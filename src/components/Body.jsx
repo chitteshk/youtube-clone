@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TopNav from "./topnav/TopNav";
 import SideNav from "./sidenav/SideNav";
-import MainContainer from "./main-container/MainContainer";
+import { Outlet } from "react-router-dom";
 
 const Body = () => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(
@@ -17,9 +17,9 @@ const Body = () => {
   return (
     <div>
       <TopNav toggleSideNav={toggleSideNav} />
-      <div className="flex gap-2 min-h-screen w-full flex-grow">
+      <div className="flex gap-2 min-h-screen min-w-fit">
         <SideNav isSideNavOpen={isSideNavOpen} />
-        <MainContainer />
+        <Outlet/>
       </div>
     </div>
   );
