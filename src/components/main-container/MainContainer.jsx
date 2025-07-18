@@ -1,27 +1,18 @@
-import React, { useEffect } from 'react'
-import CategoryList from './CategoryList'
-import { YOUTUBE_API } from '../../utils/constants';
+import React from "react";
+import CategoryList from "./CategoryList";
+import VideoContainer from "./video/VideoContainer";
 
 const MainContainer = () => {
-
-  useEffect(() => {
-    getVideos();
-  },[]);
-
-
-  const getVideos = async() => {
-      const data = await fetch(YOUTUBE_API);
-      const videoObject = await data.json();
-      console.log(videoObject);
-  }
-
   return (
-    <div className='main flex w-full'>
-      <div className='category-filter p-4'>
-        <CategoryList/>
-      </div>
-    </div>
-  )
-}
+<div className="main flex flex-col w-full h-screen">
+  <div className="category-filter p-4 flex">
+    <CategoryList />
+  </div>
+  <div className="video-container flex-1 flex flex-row flex-wrap p-4 w-full overflow-y-auto">
+    <VideoContainer />
+  </div>
+</div>
+  );
+};
 
-export default MainContainer
+export default MainContainer;
