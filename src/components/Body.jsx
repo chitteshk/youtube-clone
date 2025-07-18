@@ -15,13 +15,15 @@ const Body = () => {
     });
   };
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <TopNav toggleSideNav={toggleSideNav} />
-      <div className="flex gap-2 min-h-screen min-w-fit">
+      <div className="flex flex-1 overflow-hidden">
         <SideNav isSideNavOpen={isSideNavOpen} />
-        <Outlet />
+        <div className="flex-1 min-w-0">
+          <Outlet />
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

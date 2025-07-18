@@ -46,33 +46,24 @@ const VideoCard = ({ video }) => {
   };
 
   return (
-    <div className="flex flex-col p-3 rounded-lg mt-2 mb-4">
-      <div className="overflow-hidden rounded-lg h-full">
+    <div className="w-full max-w-[360px] flex flex-col">
+      <div className="w-full aspect-video rounded-lg overflow-hidden">
         <img
           src={
             video?.snippet?.thumbnails?.maxres?.url ||
             video?.snippet?.thumbnails?.medium?.url
           }
           alt={video?.snippet?.channelTitle}
-          className="object-cover w-full h-full"
+          className="w-full h-full object-cover"
         />
       </div>
-      <div className="description mt-2 flex-1 flex flex-col justify-between">
-        <div className="title font-semibold text-base line-clamp-2">
-          {video?.snippet?.title}
-        </div>
-        <div className="channelName text-sm text-gray-600 mt-1">
-          {video?.snippet?.channelTitle}
-        </div>
-        <div className="views text-xs text-gray-500 mt-1">
-          {video?.statistics?.viewCount
-            ? handleViewsFormat(video?.statistics?.viewCount)
-            : ""}
-        </div>
-        <div className="uploaded-since text-xs text-gray-400 mt-1">
-          {video?.snippet?.publishedAt
-            ? getTimeAgo(video.snippet.publishedAt)
-            : ""}
+      <div className="mt-2 flex-1 flex flex-col justify-between">
+        <div className="title font-semibold text-base line-clamp-2 leading-tight">{video?.snippet?.title}</div>
+        <div className="channelName text-sm text-gray-600 mt-1">{video?.snippet?.channelTitle}</div>
+        <div className="flex items-center text-xs text-gray-500 mt-1 space-x-2">
+          <span>{video?.statistics?.viewCount ? handleViewsFormat(video?.statistics?.viewCount) : ""}</span>
+          <span>•</span>
+          <span>{video?.snippet?.publishedAt ? getTimeAgo(video.snippet.publishedAt) : ""}</span>
         </div>
       </div>
     </div>
