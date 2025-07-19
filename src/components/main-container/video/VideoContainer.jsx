@@ -45,7 +45,16 @@ const VideoContainer = () => {
     const data = await fetch(url);
     const videoObject = await data.json();
     setNextPageToken(videoObject.nextPageToken);
-    setVideoList((prev) => [...prev, ...videoObject.items]);
+    setVideoList((prev) => {
+      const allVideos = [...prev, ...videoObject.items];
+      const seen = new Set();
+      const uniqueVideos = allVideos.filter(video => {
+        if(seen.has(video.id)) return false;
+        seen.add(video.id);
+        return true;
+      });
+      return uniqueVideos; // to filter out duplicat video id's, for some weird reason multiple api calls produce same videos which gives error in react as key does not stay unique ( id ) 😫
+    });
     setLoading(false);
     loadingRef.current = false;
   };
