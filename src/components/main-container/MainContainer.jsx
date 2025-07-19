@@ -8,7 +8,7 @@ const MainContainer = () => {
       <div className="flex-none">
         <CategoryList />
       </div>
-      <div className="flex-1 overflow-y-auto min-w-0 p-4">
+      <div className="flex-1 min-w-0 p-4">
         <VideoContainer />
       </div>
     </div>
