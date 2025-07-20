@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Bars3Icon, MagnifyingGlassIcon , UserCircleIcon } from "@heroicons/react/16/solid";
 import YoutubeLogo from "../../assets/svg/youtube-logo.svg";
-const TopNav = ({toggleSideNav}) => {
+import { BodyContext } from "../../context/BodyContext";
+
+const TopNav = () => {
+
+  const { toggleSideNav } = useContext(BodyContext);
   return (
     <div className="bg-white shadow-md p-4 flex justify-between items-center">
       <div className="flex row gap-2">

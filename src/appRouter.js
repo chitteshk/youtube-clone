@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainContainer from "./components/main-container/MainContainer";
 import App from "./App";
+import WatchPage from "./components/main-container/WatchPage";
 
 export const appRouter = createBrowserRouter([
     {
@@ -12,7 +13,8 @@ export const appRouter = createBrowserRouter([
                 element: <MainContainer/>
             },
             {
-                path: '/'
+                path: '/watch',
+                element: <WatchPage/>
             }
         ]
 

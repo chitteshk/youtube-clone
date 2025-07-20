@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { YOUTUBE_API } from "../../../utils/constants";
 import VideoCard from "./VideoCard";
+import { Link } from "react-router-dom";
 
 const VideoContainer = () => {
   const [videoList, setVideoList] = useState([]);
@@ -15,7 +16,6 @@ const VideoContainer = () => {
 
   useEffect(() => {
     const handleScroll = () => {
- 
       if (!containerRef.current) return;
       const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
       if (
@@ -23,7 +23,6 @@ const VideoContainer = () => {
         !loadingRef.current &&
         nextPageToken
       ) {
-        
         getVideos(nextPageToken);
       }
     };
@@ -48,8 +47,8 @@ const VideoContainer = () => {
     setVideoList((prev) => {
       const allVideos = [...prev, ...videoObject.items];
       const seen = new Set();
-      const uniqueVideos = allVideos.filter(video => {
-        if(seen.has(video.id)) return false;
+      const uniqueVideos = allVideos.filter((video) => {
+        if (seen.has(video.id)) return false;
         seen.add(video.id);
         return true;
       });
@@ -66,7 +65,11 @@ const VideoContainer = () => {
         style={{ height: "80vh", overflowY: "auto" }}
       >
         {videoList.map((video) => (
-          <VideoCard key={video.id} video={video} />
+          <>
+            <Link to={`/watch?v=${video.id}`}>
+              <VideoCard key={video.id} video={video} />
+            </Link>
+          </>
         ))}
       </div>
       {loading && (
