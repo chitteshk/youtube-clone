@@ -65,11 +65,9 @@ const VideoContainer = () => {
         style={{ height: "80vh", overflowY: "auto" }}
       >
         {videoList.map((video) => (
-          <>
-            <Link to={`/watch?v=${video.id}`}>
-              <VideoCard key={video.id} video={video} />
-            </Link>
-          </>
+          <Link to={`/watch?v=${video.id}`} key={video.id}>
+            <VideoCard video={video} />
+          </Link>
         ))}
       </div>
       {loading && (
