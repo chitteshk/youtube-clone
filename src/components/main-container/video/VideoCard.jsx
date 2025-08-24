@@ -1,6 +1,6 @@
 import React from "react";
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, variant }) => {
   const handleViewsFormat = (views) => {
     if (views >= 1_000_000_000) {
       return (views / 1_000_000_000).toFixed(1).replace(/\.0$/, "") + "B views";
@@ -44,6 +44,23 @@ const VideoCard = ({ video }) => {
     const diffYears = Math.floor(diffDays / 365);
     return `${diffYears} year${diffYears !== 1 ? "s" : ""} ago`;
   };
+
+  if(variant === 'horzontal') {
+    return (
+      <div className="w-full max-w-500px flex flex-row">
+         <div className="w-full aspect-video rounded-lg overflow-hidden">
+        <img
+          src={
+            video?.snippet?.thumbnails?.maxres?.url ||
+            video?.snippet?.thumbnails?.medium?.url
+          }
+          alt={video?.snippet?.channelTitle}
+          className="w-full h-full object-cover"
+        />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="w-full max-w-[360px] flex flex-col">

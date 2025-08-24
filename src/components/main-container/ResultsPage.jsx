@@ -87,7 +87,7 @@ const ResultsPage = () => {
             key={result?.id?.videoId}
             to={`/watch?v=${result?.id?.videoId}`}
           >
-            <VideoCard video={result} variant="horizonal"/>
+            <VideoCard video={result} variant="horizontal"/>
           </Link>
         ))}
       </div>
